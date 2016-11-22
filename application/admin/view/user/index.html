@@ -118,8 +118,9 @@
             //do something
             $.getJSON('./userDel', {'id' : id}, function(res){
                 if(res.code == 1){
-                    layer.alert('删除成功');
-                    initTable();
+                    layer.alert('删除成功',function(){
+                             initTable();
+                    });
                 }else{
                     layer.alert('删除失败');
                 }

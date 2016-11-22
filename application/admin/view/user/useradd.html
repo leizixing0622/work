@@ -123,7 +123,14 @@
                 //关闭加载层
                 layer.close(jz);
                 if(data.code == 1){
-                    swal(data.msg, "", "success");
+                    swal({
+                      title: data.msg,
+                      text: "",
+                      type: "success",
+                    },
+                    function(){
+                      location.href="/work/public/index.php/admin/user/index.html";
+                    });
                 }else{
                     swal(data.msg, "", "error");
                 }
