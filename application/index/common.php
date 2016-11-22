@@ -88,7 +88,16 @@ function prepareMenu($param)
 
     return $parent;
 }
-
+function prepareFrontMenu($param){
+    $parent = [];
+    foreach($param as $key=>$vo){
+        if($vo['type']=='2'){
+            $vo['href'] = url($vo['control_name'].'/'.$vo['action_name']) ;
+            $parent[] = $vo;
+        }
+    }
+    return $parent;
+}
 /**
  * 解析备份sql文件
  * @param $file
