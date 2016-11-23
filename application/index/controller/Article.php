@@ -8,6 +8,9 @@ use app\admin\model\UserType;
 class Article extends Base
 {
 	public function index(){
-		echo 'article';
+		 
+		 return $this->fetch();
+		
+		
 	}
 }
