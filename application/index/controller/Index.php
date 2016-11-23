@@ -9,4 +9,7 @@ class Index extends Base
     {
         return $this->fetch('/index');
     }
+    public function indexPage(){
+    	return $this->fetch('index');
+    }
 }
