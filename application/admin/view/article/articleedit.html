@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加文章</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__CSS__/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="__CSS__/animate.min.css" rel="stylesheet">
+    <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
+    <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="container">
+        <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+              	<form role="form" method="post" class="form-horizontal m-t" id="articleAddForm" method="post" onsubmit="return toVaild()">
+				  <div class="form-group">
+				    <label for="title">标题</label>
+				    <input type="text" class="form-control" id="title" placeholder="title" name="title">
+				  </div>
+				   <div class="form-group">
+				    <label for="author">作者</label>
+				    <input type="text" class="form-control" id="author" placeholder="author" name="author">
+				  </div>
+				   <div class="form-group">
+				    <label for="content">简介</label>
+				    <input type="text" class="form-control" id="content" placeholder="content" name="content">
+				  </div>
+				  <div class="form-group">
+				    <label for="content">封面</label>
+				    <input type="text" class="form-control" id="picture" placeholder="picture" name="picture">
+				  </div>
+				  <div class="form-group">
+				  <button type="submit" class="btn btn-success">确认</button>
+				  </div>
+			</form>
+              </div>         
+         </div>
+    </div>
+    
+<!-- End Panel Other -->
+</div>
+<script src="__JS__/jquery.min.js?v=2.1.4"></script>
+<script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
+<script src="__JS__/content.min.js?v=1.0.0"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="__JS__/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="__JS__/plugins/suggest/bootstrap-suggest.min.js"></script>
+<script src="__JS__/plugins/layer/laydate/laydate.js"></script>
+<script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="__JS__/plugins/layer/layer.min.js"></script>
+<script>
+	function toVaild(){
+        var jz; //打开加载层
+        var url = "./articleAdd";
+        $.ajax({
+            type:"POST",
+            url:url,
+            data:{'data' : $('#articleAddForm').serialize()},// 你的formid
+            async: false,
+            beforeSend:function(){
+                jz = layer.load(1, {shade: false}); //0代表加载的风格，支持0-2
+            },
+            error: function(request) {
+                layer.close(jz);
+                swal("网络错误!", "", "error");
+            },
+            success: function(data) {
+                //关闭加载层
+                layer.close(jz);
+                if(data.code == 1){
+                	console.log(data.msg);
+                    swal({
+                      title: data.msg,
+                      text: "",
+                      type: "success",
+                    },
+                    function(){
+                      location.href="/work/public/index.php/index/article/index.html";
+                    });
+                }else{
+                    swal(data.msg, "", "error");
+                }
+
+            }
+        });
+
+        return false;
+    }
+</script>
+</body>
+</html>

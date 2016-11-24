@@ -36,22 +36,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-                {if !empty($menu)}
-                {foreach name="menu" item="vo"}
-                <li class="dropdown">
-                    <a class="dropdown-toggle"  href="{$vo.href}" data-toggle="dropdown">{$vo.node_name}<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                        {if !empty($vo['child'])}
-                            {foreach name="$vo['child']" item="v"}
-                            <li>
-                                <a class="J_menuItem" href="{$v.href}">{$v.node_name}</a>
-                            </li>
-                            {/foreach}
-                        {/if}
-                  </ul>
-                </li>
-                {/foreach}
-                {/if}
+                <li><a class="J_menuItem" href="/work/public/index.php/index/index/article.html">我的文章</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
