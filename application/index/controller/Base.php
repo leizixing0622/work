@@ -29,9 +29,9 @@ class Base extends Controller
         $node = new Node();
 
         $this->assign([
-          /*  'username' => session('username'),*/
+       
             'menu' => $node->getFrontMenu(),
-           /* 'rolename' => session('role')*/
+          
         ]);
     }
 }

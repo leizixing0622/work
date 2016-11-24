@@ -62,7 +62,7 @@ class Node extends Model
 	}
 	public function getFrontMenu(){
 		
-		$result = db('node')->field('id,node_name,module_name,control_name,action_name,style,type')->where('type = 2')->select();
+		$result = db('node')->field('id,node_name,module_name,control_name,action_name,typeid,style,type')->where('type = 2')->select();
 		$menu = prepareFrontMenu($result);
 		return $menu;
 	}
