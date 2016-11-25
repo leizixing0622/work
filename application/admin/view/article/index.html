@@ -110,13 +110,13 @@
         $("#search").bind("click", initTable);
     });
 
-    /*function userDel(id){
-        layer.confirm('确认删除此管理员?', {icon: 3, title:'提示'}, function(index){
+    function articleDel(id){
+        layer.confirm('确认删除此文章?', {icon: 3, title:'提示'}, function(index){
             //do something
-            $.getJSON('./userDel', {'id' : id}, function(res){
+            $.getJSON('./articleDel', {'id' : id}, function(res){
                 if(res.code == 1){
-                    layer.alert('删除成功',function(){
-                             initTable();
+                    layer.alert('删除成功', function(){
+                        initTable();
                     });
                 }else{
                     layer.alert('删除失败');
@@ -125,7 +125,8 @@
 
             layer.close(index);
         })
-*/
+
+    }
     
 </script>
 </body>

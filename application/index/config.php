@@ -13,9 +13,9 @@ return [
 
     //模板参数替换
     'view_replace_str'       => array(
-        '__CSS__'    => '/snake/public/static/admin/css',
-        '__JS__'     => '/snake/public/static/admin/js',
-        '__IMG__' => '/snake/public/static/admin/images',
+        '__CSS__'    => '/work/public/static/admin/css',
+        '__JS__'     => '/work/public/static/admin/js',
+        '__IMG__' => '/work/public/static/admin/images',
     ),
 
     //管理员状态

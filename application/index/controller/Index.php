@@ -14,7 +14,7 @@ class Index extends Base
     	$article = new ArticleModel();
 		 $this->assign([
 
-   		 	'article' => $article->getAllArticle(),
+   		 	'article' => $article->getArticleByWhere([],0,10),
 
 		  ]);
     	return $this->fetch('article');

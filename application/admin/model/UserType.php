@@ -147,7 +147,7 @@ class UserType extends Model
         }else{
             $where = 'id in('.$result['rule'].')';
         }
-        $res = db('node')->field('control_name,action_name')->where($where)->select();
+        $res = db('node')->field('module_name,control_name,action_name')->where($where)->select();
         foreach($res as $key=>$vo){
             if('#' != $vo['action_name']){
                 $result['action'][] = $vo['control_name'] . '/' . $vo['action_name'];

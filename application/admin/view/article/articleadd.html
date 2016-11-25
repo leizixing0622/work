@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
               <div class="col-md-8 col-md-offset-2">
-              	<form role="form" method="post" class="form-horizontal m-t" id="articleAddForm" method="post" onsubmit="return toVaild()">
+              	<form role="form" enctype="multipart/form-data" method="post" class="form-horizontal m-t" id="articleAddForm" method="post" onsubmit="return toVaild()">
 				  <div class="form-group">
 				    <label for="title">标题</label>
 				    <input type="text" class="form-control" id="title" placeholder="title" name="title">
@@ -32,10 +32,12 @@
 				    <label for="content">简介</label>
 				    <input type="text" class="form-control" id="content" placeholder="content" name="content">
 				  </div>
-				  <div class="form-group">
-				    <label for="content">封面</label>
-				    <input type="text" class="form-control" id="picture" placeholder="picture" name="picture">
-				  </div>
+				   <div class="form-group">
+                                                                            <label for="content">封面</label>
+                                                                          <img class="img_upload_show" style="width: 140px;height: 140px;margin-left: 50px;margin-bottom: 20px;"/>
+                                                                            <input type="file" name="picture" class="img_upload_file" multiple="multiple" style="margin-left: 80px;"/> 
+                                                                          
+                                                     </div> 
 				  <div class="form-group">
 				  <button type="submit" class="btn btn-success">确认</button>
 				  
@@ -59,10 +61,19 @@
 <script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="__JS__/plugins/layer/layer.min.js"></script>
 <script>
+//上传图片预览
+ $(".img_upload_file").change(function() {
+            var file = this.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(e) {
+                $(".img_upload_show").attr("src", this.result);
+            };
+        });
 	$('#cancle').on('click',function(){
-		location.href="/work/public/index.php/index/article/index.html";
+		location.href="/work/public/index.php/admin/article/index.html";
 	});
-	function toVaild(){
+function toVaild(){
         var jz; //打开加载层
         var url = "./articleAdd";
         $.ajax({
@@ -81,15 +92,16 @@
                 //关闭加载层
                 layer.close(jz);
                 if(data.code == 1){
-                	console.log(data.msg);
+                	console.log();
                     swal({
                       title: data.msg,
                       text: "",
                       type: "success",
                     },
                     function(){
-                      location.href="/work/public/index.php/index/article/index.html";
+                      location.href="/work/public/index.php/admin/article/index.html";
                     });
+                    console.log(data.msg);
                 }else{
                     swal(data.msg, "", "error");
                 }

@@ -18,18 +18,19 @@
     <div class="container">
         <div class="row">
               <div class="col-md-8 col-md-offset-2">
-              	<form role="form" method="post" class="form-horizontal m-t" id="articleAddForm" method="post" onsubmit="return toVaild()">
+              	<form role="form" method="post" class="form-horizontal m-t" id="articleEditForm" method="post" onsubmit="return toVaild()">
+                                                    <input type="hidden" value="{$article.id}" name="id"/>
 				  <div class="form-group">
 				    <label for="title">标题</label>
-				    <input type="text" class="form-control" id="title" placeholder="title" name="title">
+				    <input type="text" class="form-control" id="title" placeholder="title" name="title" value="{$article.title}">
 				  </div>
 				   <div class="form-group">
 				    <label for="author">作者</label>
-				    <input type="text" class="form-control" id="author" placeholder="author" name="author">
+				    <input type="text" class="form-control" id="author" placeholder="author" name="author" value="{$article.author}">
 				  </div>
 				   <div class="form-group">
 				    <label for="content">简介</label>
-				    <input type="text" class="form-control" id="content" placeholder="content" name="content">
+				    <input type="text" class="form-control" id="content" placeholder="content" name="content" value="{$article.content}">
 				  </div>
 				  <div class="form-group">
 				    <label for="content">封面</label>
@@ -56,13 +57,13 @@
 <script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="__JS__/plugins/layer/layer.min.js"></script>
 <script>
-	function toVaild(){
+function toVaild(){
         var jz; //打开加载层
-        var url = "./articleAdd";
+        var url = "./articleEdit";
         $.ajax({
             type:"POST",
             url:url,
-            data:{'data' : $('#articleAddForm').serialize()},// 你的formid
+            data:{'data' : $('#articleEditForm').serialize()},// 你的formid
             async: false,
             beforeSend:function(){
                 jz = layer.load(1, {shade: false}); //0代表加载的风格，支持0-2
@@ -75,14 +76,14 @@
                 //关闭加载层
                 layer.close(jz);
                 if(data.code == 1){
-                	console.log(data.msg);
+                    console.log(data.msg);
                     swal({
                       title: data.msg,
                       text: "",
                       type: "success",
                     },
                     function(){
-                      location.href="/work/public/index.php/index/article/index.html";
+                      location.href="/work/public/index.php/admin/article/index.html";
                     });
                 }else{
                     swal(data.msg, "", "error");
